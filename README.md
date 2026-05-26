@@ -1,42 +1,35 @@
-# sv
+# archculars website
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Landing page für [archculars](https://github.com/alpwrk/archculars) — einem modernen Terminal-UI für die Paketverwaltung von Arch Linux + AUR.
 
-## Creating a project
+Die Seite stellt das Projekt im Stil eines Terminal-Fensters dar und enthält alle Infos zu Features, Installation, Bedienung, Architektur und Stack.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Inhalt
 
-```sh
-# create a new project
-npx sv create my-app
-```
+- **about** — was archculars ist, mit Paketinfos und TUI-Preview
+- **features** — Async-Search, PKGBUILD-Viewer, Dependency-Tree, Upgrades, Arch-News, Stats und mehr
+- **install** — Build aus Source und Installation als Arch-Paket via `makepkg -si`
+- **usage** — CLI-Flags und Beispielaufrufe
+- **keys** — komplette Liste der Keybindings
+- **arch** — Modulübersicht des Rust-Quellbaums
+- **stack** — verwendete Crates (ratatui, alpm, raur, tokio, syntect …)
 
-To recreate this project with the same configuration:
+## Über archculars
 
-```sh
-# recreate this project
-npx sv@0.15.3 create --template minimal --types ts --install npm .
-```
+- Geschrieben in **Rust 2021** auf Basis von [ratatui](https://ratatui.rs/) und [libalpm](https://man.archlinux.org/man/libalpm.3.en)
+- Eine einzige statisch gelinkte Binary, ~9 MB
+- Parallele Suche in Repos und AUR mit On-Disk-Cache (1h TTL)
+- Live-PKGBUILD-Viewer mit Syntax-Highlighting
+- Dependency-Tree mit Cycle-Detection
+- Upgrades via `alpm::vercmp`, Arch-News via offiziellem RSS-Feed
+- Install/Remove über `pkexec pacman` bzw. `paru`/`yay`
+- Lizenz: MIT
 
-## Developing
+## Tech
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+SvelteKit + TypeScript, statisch gebaut mit `@sveltejs/adapter-static`.
 
-```sh
-npm run dev
+## Links
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- Projekt: <https://github.com/alpwrk/archculars>
+- Maintainer: x@alpwrk.cc
