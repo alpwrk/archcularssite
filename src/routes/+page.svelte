@@ -111,17 +111,18 @@
 						<pre class="screenshot">{TUI_PREVIEW}</pre>
 
 						<div class="prompt-line">
-							<span class="prompt">$</span> <span class="cmd">pacman -Qi archculars</span>
+							<span class="prompt">$</span> <span class="cmd">yay -Qi archculars</span>
 						</div>
 						<div class="kv">
 							<div><span class="k">Name</span> <span class="v">{META.name}</span></div>
-							<div><span class="k">Version</span> <span class="v">{META.version}</span></div>
-							<div><span class="k">Description</span> <span class="v">{META.tagline}</span></div>
-							<div><span class="k">License</span> <span class="v">{META.license}</span></div>
-							<div><span class="k">Language</span> <span class="v">{META.language}</span></div>
-							<div><span class="k">Binary size</span> <span class="v">{META.binarySize}</span></div>
-							<div><span class="k">Maintainer</span> <span class="v">{META.author}</span></div>
-							<div><span class="k">Repo</span> <span class="v"><a href={META.repo} target="_blank" rel="noreferrer">{META.repo}</a></span></div>
+							<div><span class="k">Version</span> <span class="v">{META.version}-{META.release}</span></div>
+							<div><span class="k">Description</span> <span class="v">{META.description}</span></div>
+							<div><span class="k">Architecture</span> <span class="v">{META.architecture}</span></div>
+							<div><span class="k">URL</span> <span class="v"><a href={META.repo} target="_blank" rel="noreferrer">{META.repo}</a></span></div>
+							<div><span class="k">Licenses</span> <span class="v">{META.license}</span></div>
+							<div><span class="k">Installed Size</span> <span class="v">{META.binarySize}</span></div>
+							<div><span class="k">Packager</span> <span class="v">{META.author}</span></div>
+							<div><span class="k">Install Reason</span> <span class="v">{META.installReason}</span></div>
 						</div>
 					</section>
 				{:else if active === 'features'}
@@ -151,19 +152,22 @@
 
 						<div class="step">
 							<div class="step-head">
-								<span class="step-num">[1/3]</span> build from source
+								<span class="step-num">[1/4]</span> AUR install
+								<span class="rec-badge">recommended</span>
 							</div>
-							<pre class="block">{`$ git clone https://github.com/alpwrk/archculars
-$ cd archculars
-$ cargo build --release
-$ ./target/release/archculars`}</pre>
+							<pre class="block">{`# yay
+$ yay -S archculars
+
+# paru
+$ paru -S archculars`}</pre>
 						</div>
 
 						<div class="step">
 							<div class="step-head">
-								<span class="step-num">[2/3]</span> install as arch package
+								<span class="step-num">[2/4]</span> manual (makepkg)
 							</div>
-							<pre class="block">{`$ cd archculars
+							<pre class="block">{`$ git clone https://aur.archlinux.org/archculars.git
+$ cd archculars
 $ makepkg -si
 ==> Making package: archculars ${META.version}-1
 ==> Checking runtime dependencies...
@@ -179,7 +183,17 @@ $ makepkg -si
 
 						<div class="step">
 							<div class="step-head">
-								<span class="step-num">[3/3]</span> optional dependencies
+								<span class="step-num">[3/4]</span> build from source
+							</div>
+							<pre class="block">{`$ git clone https://github.com/alpwrk/archculars
+$ cd archculars
+$ cargo build --release
+$ ./target/release/archculars`}</pre>
+						</div>
+
+						<div class="step">
+							<div class="step-head">
+								<span class="step-num">[4/4]</span> optional dependencies
 							</div>
 							<ul class="opt">
 								<li><span class="dep">paru</span> — preferred AUR helper</li>
@@ -660,6 +674,17 @@ $ archculars -i firefox`}</pre>
 	.step-num {
 		color: #ff5555;
 		font-weight: 600;
+	}
+	.rec-badge {
+		font-size: 10.5px;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: #ff5555;
+		padding: 1px 7px;
+		border: 1px solid rgba(255, 85, 85, 0.4);
+		border-radius: 999px;
+		background: rgba(255, 85, 85, 0.08);
 	}
 	.block {
 		margin: 0;

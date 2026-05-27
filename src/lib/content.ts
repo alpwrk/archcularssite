@@ -30,12 +30,16 @@ export interface StackEntry {
 export const META = {
 	name: 'archculars',
 	tagline: 'Modern TUI for Arch Linux + AUR package management',
-	version: '0.1.0',
+	description: 'A modern and fast AUR seeker',
+	version: '0.1.2',
+	release: '1',
+	architecture: 'x86_64',
 	license: 'MIT',
 	repo: 'https://github.com/alpwrk/archculars',
-	binarySize: '~9 MB',
+	binarySize: '8.96 MiB',
 	language: 'Rust 2021',
-	author: 'x@alpwrk.cc'
+	author: 'x@alpwrk.cc',
+	installReason: 'Explicitly installed'
 };
 
 export const FEATURES: Feature[] = [
