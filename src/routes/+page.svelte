@@ -5,8 +5,7 @@
 		KEYBINDINGS,
 		CLI_ARGS,
 		ARCHITECTURE,
-		STACK,
-		TUI_PREVIEW
+		STACK
 	} from '$lib/content';
 
 	const PANES = [
@@ -108,22 +107,7 @@
 						<div class="prompt-line">
 							<span class="prompt">$</span> <span class="cmd">archculars linux</span>
 						</div>
-						<pre class="screenshot">{TUI_PREVIEW}</pre>
-
-						<div class="prompt-line">
-							<span class="prompt">$</span> <span class="cmd">yay -Qi archculars</span>
-						</div>
-						<div class="kv">
-							<div><span class="k">Name</span> <span class="v">{META.name}</span></div>
-							<div><span class="k">Version</span> <span class="v">{META.version}-{META.release}</span></div>
-							<div><span class="k">Description</span> <span class="v">{META.description}</span></div>
-							<div><span class="k">Architecture</span> <span class="v">{META.architecture}</span></div>
-							<div><span class="k">URL</span> <span class="v"><a href={META.repo} target="_blank" rel="noreferrer">{META.repo}</a></span></div>
-							<div><span class="k">Licenses</span> <span class="v">{META.license}</span></div>
-							<div><span class="k">Installed Size</span> <span class="v">{META.binarySize}</span></div>
-							<div><span class="k">Packager</span> <span class="v">{META.author}</span></div>
-							<div><span class="k">Install Reason</span> <span class="v">{META.installReason}</span></div>
-						</div>
+						<img class="screenshot" src="/archculars-preview.png" alt="archculars TUI showing search results for linux" />
 					</section>
 				{:else if active === 'features'}
 					<section class="pane">
@@ -196,8 +180,8 @@ $ ./target/release/archculars`}</pre>
 								<span class="step-num">[4/4]</span> optional dependencies
 							</div>
 							<ul class="opt">
-								<li><span class="dep">paru</span> — preferred AUR helper</li>
-								<li><span class="dep">yay</span> — alternative AUR helper</li>
+								<li><span class="dep">yay</span> — preferred AUR helper</li>
+								<li><span class="dep">paru</span> — alternative AUR helper</li>
 								<li><span class="dep">polkit</span> — graphical sudo prompts via pkexec</li>
 							</ul>
 						</div>
@@ -339,11 +323,11 @@ $ archculars -i firefox`}</pre>
 			);
 		color: #d4d4dc;
 		font-family: 'JetBrains Mono', 'Fira Code', Menlo, Consolas, monospace;
-		padding: 16px 18px 10px;
+		padding: 8px 18px 6px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 8px;
+		gap: 4px;
 		overflow: hidden;
 	}
 
@@ -402,9 +386,9 @@ $ archculars -i firefox`}</pre>
 	}
 
 	.body {
-		padding: 18px 24px 0;
+		padding: 10px 24px 0;
 		font-size: 13.5px;
-		line-height: 1.55;
+		line-height: 1.45;
 		flex: 1 1 auto;
 		min-height: 0;
 		display: flex;
@@ -412,11 +396,11 @@ $ archculars -i firefox`}</pre>
 	}
 
 	.header {
-		margin-bottom: 12px;
+		margin-bottom: 6px;
 		flex-shrink: 0;
 	}
 	.logo {
-		margin: 0 0 8px;
+		margin: 0 0 4px;
 		color: #ff5555;
 		font-size: 12px;
 		line-height: 1.35;
@@ -520,7 +504,7 @@ $ archculars -i firefox`}</pre>
 	}
 
 	.content {
-		padding: 18px 4px 18px;
+		padding: 10px 4px 10px;
 		flex: 1 1 auto;
 		min-height: 0;
 		overflow-y: auto;
@@ -544,14 +528,11 @@ $ archculars -i firefox`}</pre>
 		display: flex;
 		align-items: baseline;
 		gap: 8px;
-		margin: 0 0 10px;
+		margin: 0 0 6px;
 		font-size: 13px;
 	}
-	.prompt-line + .prompt-line,
-	.block + .prompt-line,
-	.kv + .prompt-line,
-	.screenshot + .prompt-line {
-		margin-top: 22px;
+	.block + .prompt-line {
+		margin-top: 14px;
 	}
 	.prompt {
 		color: #ff5555;
@@ -567,18 +548,16 @@ $ archculars -i firefox`}</pre>
 	}
 
 	.output {
-		margin-bottom: 18px;
+		margin-bottom: 10px;
 	}
 	.output p {
-		margin: 0 0 8px;
+		margin: 0 0 5px;
 		color: #b8b8c4;
 	}
-	.output a,
-	.kv a {
+	.output a {
 		color: #ff8866;
 	}
-	.output a:hover,
-	.kv a:hover {
+	.output a:hover {
 		color: #ff5555;
 	}
 	.ok {
@@ -588,36 +567,25 @@ $ archculars -i firefox`}</pre>
 		color: #ff8866;
 	}
 
+	.pane:has(.screenshot) {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		min-height: 0;
+	}
 	.screenshot {
-		margin: 0 0 6px;
-		padding: 14px 12px;
+		display: block;
+		flex: 1 1 auto;
+		min-height: 0;
+		max-width: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 6px;
 		background: #050507;
 		border: 1px solid #1a1a22;
 		border-radius: 4px;
-		color: #c8c8d4;
-		font-size: 12.5px;
-		line-height: 1.5;
-		white-space: pre;
-		overflow-x: auto;
-	}
-
-	.kv {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-		gap: 4px 28px;
-		padding: 12px 14px;
-		background: #050507;
-		border: 1px solid #1a1a22;
-		border-radius: 4px;
-		font-size: 12.5px;
-	}
-	.k {
-		display: inline-block;
-		width: 108px;
-		color: #6a6a78;
-	}
-	.v {
-		color: #d4d4dc;
+		box-sizing: border-box;
+		object-fit: contain;
 	}
 
 	/* features pane */
@@ -862,9 +830,6 @@ $ archculars -i firefox`}</pre>
 		}
 		.logo {
 			font-size: 9px;
-		}
-		.kv {
-			grid-template-columns: 1fr;
 		}
 		.tab {
 			padding: 6px 10px;
