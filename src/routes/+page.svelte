@@ -84,7 +84,7 @@
 				{#if active === 'about'}
 					<section class="pane">
 						<div class="prompt-line">
-							<span class="prompt">$</span> <span class="cmd">archculars --help</span>
+							<span class="prompt">$</span> <span class="cmd">description</span>
 						</div>
 						<div class="output">
 							<p>
@@ -101,7 +101,7 @@
 									rel="noreferrer">libalpm</a
 								>. A single statically-linked <span class="hi">{META.binarySize}</span> binary
 								with async parallel repo + AUR search, live PKGBUILD viewer, dependency tree,
-								upgrades, stats and Arch news — all without leaving the terminal.
+								upgrades, stats and Arch news — all without leaving the terminal. Besides that, it is noticeable faster than pacseek.
 							</p>
 						</div>
 
